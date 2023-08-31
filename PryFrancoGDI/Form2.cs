@@ -16,7 +16,7 @@ namespace PryFrancoGDI
         {
             InitializeComponent();
         }
-        public int pictureboxspeed = 5;
+        public int velocidad = 5;
         private void btnJugar_Click(object sender, EventArgs e)
         {
 
@@ -29,21 +29,50 @@ namespace PryFrancoGDI
 
         private void Form2_KeyDown(object sender, KeyEventArgs e)
         {
+            this.Focus();
             if(e.KeyCode == Keys.Left)
             {
                 
                 if (picNave.Left > 0)
                 {
-                    picNave.Left -= pictureboxspeed;
+                    picNave.Left -= velocidad;
                 }
             }
             else if (e.KeyCode == Keys.Right)
             {
                 if(picNave.Right < ClientSize.Width)
                 {
-                    picNave.Left += pictureboxspeed;
+                    picNave.Left += velocidad;
                 }
             }
+          
+        }
+
+        private void picNave_Click(object sender, EventArgs e)
+        {
+
+        }
+        //PictureBox bola = new PictureBox();
+        private void btnJugar_Click_1(object sender, EventArgs e)
+        {
+            btnJugar.Location = new Point(1000, 0);
+            Enabled = false;
+            timer.Enabled = true;
+        }
+        //PictureBox bola = new PictureBox();
+        private void timer_Tick(object sender, EventArgs e)
+        {
+            PictureBox bola = new PictureBox();
+            bola.Location = picNave.Location;
+            bola.Width = 20;
+            bola.Height = 20;
+            bola.BackColor = Color.Black;
+            bola.TabIndex = picNave.TabIndex;
+            bola.TabStop = false;
+
+            Controls.Add(bola);
+
+            
         }
     }
 }
